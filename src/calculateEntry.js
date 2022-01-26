@@ -18,6 +18,13 @@ function calculateEntry(entrants) {
   if (entrants === undefined || Object.keys(entrants).length === 0) {
     return 0;
   }
+  const { prices } = data;
+  const qtaPeople = [countEntrants(entrants)];
+  return qtaPeople.reduce((acc, curr) => {
+    let count = acc;
+    count = curr.child * prices.child + curr.adult * prices.adult + curr.senior * prices.senior;
+    return count;
+  }, 0);
 }
 
 module.exports = { calculateEntry, countEntrants };
