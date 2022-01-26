@@ -9,7 +9,6 @@ const managers = [stephanieId, olaId, burlId];
 describe('4 - Crie a gestão dos funcionários de acordo com o respectivo gerente', () => {
   it('retorna true se o id passado é de um gerente', () => {
     const expected = true;
-    
     managers.forEach((managerId) => {
       const actual = isManager(managerId);
       expect(actual).toBe(expected);
