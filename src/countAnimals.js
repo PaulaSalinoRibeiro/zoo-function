@@ -2,6 +2,15 @@ const data = require('../data/zoo_data');
 
 const { species } = data;
 
+const cb = (acc, curr) => {
+  let count = acc;
+  if (curr.sex === 'female') {
+    count += 1;
+    return count;
+  }
+  return count;
+};
+
 function countAnimals(animal) {
   if (animal === undefined) {
     return species.reduce((acc, { name, residents }) => {
@@ -13,8 +22,11 @@ function countAnimals(animal) {
     const findAnimal = species.find(({ name }) => name === animal.specie);
     return findAnimal.residents.length;
   }
+  if (Object.keys(animal).length === 2) {
+    const findAnimal = species.find(({ name }) => name === animal.specie);
+    const { residents } = findAnimal;
+    return residents.reduce(cb, 0);
+  }
 }
-console.log(countAnimals({ specie: 'penguins' }));
 
-// with parameter contain sex --> qta
 module.exports = countAnimals;
