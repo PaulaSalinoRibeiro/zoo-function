@@ -20,10 +20,8 @@ function getRelatedEmployees(managerId) {
   const { employees } = data;
   return employees.reduce((acc, curr) => {
     if (curr.managers.includes(managerId)) {
-      // console.log(curr.managers.includes(managerId));
       acc.push(`${curr.firstName} ${curr.lastName}`);
     }
-    // console.log(acc);
     return acc;
   }, []);
 }
