@@ -1,16 +1,5 @@
 const data = require('../data/zoo_data');
 
-// const idAnimals = findEmployee(obj).responsibleFor;
-// console.log(idAnimals);
-
-/* idAnimals.forEach((e) => {
-  species.find((specie) => {
-  if (e === specie.id) {
-  animals.push(specie.name);
-  local.push(specie.location); 
-*/
-
-
 const { species, employees } = data;
 
 const findEmployee = (obj) => {
@@ -32,15 +21,15 @@ const findEmployee = (obj) => {
     locations: [...local] };
 };
 
-//console.log(findEmployee({ name: 'Sharonda' }));
-
 function getEmployeesCoverage(obj) {
-  if (Object.keys(obj).length === 0) {
-    return 'list of all employees'; // --> array all employees;
+  if (obj === undefined) {
+    const listEmployees = [];
+    employees.forEach((employee) => {
+      listEmployees.push(findEmployee(employee));
+    });
+    return listEmployees;
   }
-  return findEmployee(obj); // --> filter employees;
+  return findEmployee(obj);
 }
-
-//console.log(getEmployeesCoverage({ name: 'Sharonda' }));
 
 module.exports = getEmployeesCoverage;
