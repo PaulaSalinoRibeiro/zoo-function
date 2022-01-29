@@ -28,7 +28,11 @@ const createdSchedule = (day) => {
 
 function getSchedule(scheduleTarget) {
   if (scheduleTarget === undefined) {
-    //
+    const completeSchedule = days.reduce((acc, day) => {
+      const schedule = createdSchedule(day);
+      return { ...acc, ...schedule };
+    }, {});
+    return completeSchedule;
   }
 
   if (days.includes(scheduleTarget)) {
@@ -41,6 +45,6 @@ function getSchedule(scheduleTarget) {
   }
 }
 
-console.log(getSchedule('Wednesday'));
+console.log(getSchedule());
 
 module.exports = getSchedule;
