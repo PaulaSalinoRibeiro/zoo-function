@@ -7,14 +7,14 @@ const animals = species.map((animal) => animal.name);
 
 const getOfficeHour = (day) => {
   if (day === 'Monday') {
-    return 'CLOSE';
+    return 'CLOSED';
   }
-  return `Open from ${hours[day].open}am until ${hours[day].close} pm`;
+  return `Open from ${hours[day].open}am until ${hours[day].close}pm`;
 };
 
 const getSpecieInExhibition = (day) => {
   if (day === 'Monday') {
-    return 'The zoo will be closed';
+    return 'The zoo will be closed!';
   }
   const findSpecies = species.filter((elem) => elem.availability.includes(day));
   const arrSpecies = findSpecies.map((animal) => animal.name);
@@ -41,6 +41,6 @@ function getSchedule(scheduleTarget) {
   }
 }
 
-console.log(getSchedule('giraffes'));
+console.log(getSchedule('Wednesday'));
 
 module.exports = getSchedule;
