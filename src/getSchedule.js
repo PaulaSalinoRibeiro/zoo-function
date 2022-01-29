@@ -22,27 +22,32 @@ const getSpecieInExhibition = (day) => {
 };
 
 const createdSchedule = (day) => {
+  if (day === undefined) {
+    const completeSchedule = days.reduce((acc, curr) => {
+      const schedule = createdSchedule(curr);
+      return { ...acc, ...schedule };
+    }, {});
+    return completeSchedule;
+  }
   const sch = { [day]: { officeHour: getOfficeHour(day), exhibition: getSpecieInExhibition(day) } };
   return sch;
 };
 
 function getSchedule(scheduleTarget) {
   if (scheduleTarget === undefined) {
-    const completeSchedule = days.reduce((acc, day) => {
-      const schedule = createdSchedule(day);
-      return { ...acc, ...schedule };
-    }, {});
-    return completeSchedule;
+    return createdSchedule();
   }
 
-  if (days.includes(scheduleTarget)) {
-    return createdSchedule(scheduleTarget);
+  if (!days.includes(scheduleTarget) && !animals.includes(scheduleTarget)) {
+    return createdSchedule();
   }
 
   if (animals.includes(scheduleTarget)) {
     const animal = species.find((specie) => specie.name === scheduleTarget);
     return animal.availability;
   }
+
+  return createdSchedule(scheduleTarget);
 }
 
 console.log(getSchedule());
