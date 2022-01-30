@@ -23,11 +23,13 @@ const getSpecieInExhibition = (day) => {
 
 const createdSchedule = (day) => {
   if (day === undefined) {
-    const completeSchedule = days.reduce((acc, curr) => {
-      const schedule = createdSchedule(curr);
-      return { ...acc, ...schedule };
+    return days.reduce((acc, curr) => {
+      acc[curr] = {
+        officeHour: getOfficeHour(curr),
+        exhibition: getSpecieInExhibition(curr),
+      };
+      return acc;
     }, {});
-    return completeSchedule;
   }
   const sch = { [day]: { officeHour: getOfficeHour(day), exhibition: getSpecieInExhibition(day) } };
   return sch;
@@ -49,7 +51,5 @@ function getSchedule(scheduleTarget) {
 
   return createdSchedule(scheduleTarget);
 }
-
-console.log(getSchedule());
 
 module.exports = getSchedule;
