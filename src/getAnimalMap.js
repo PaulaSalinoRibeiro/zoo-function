@@ -13,13 +13,15 @@ const specieByRegion = () => {
   return arrayAnimal;
 };
 
+const animalNameByRegion = () => {
+  // return
+};
 
 function getAnimalMap(options) {
-  // inputs
-  // includesName = true
-  // includesName = true && sort = true
-  // includesName = true && sex = female/macho
-  // includesName = true && sex = female/macho && sort = true
+  const { includesName, sex, sorted } = options;
+  if (includesName === true) {
+    return animalNameByRegion({ sex, sorted });
+  }
 
   return specieByRegion();
 }
