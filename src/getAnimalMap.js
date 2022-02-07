@@ -21,7 +21,7 @@ const filterResidents = (residents, sex, sorted) => {
 };
 
 const animalMap = ({ includeNames, sex, sorted }) => {
-  const lc = { NE: [], NW: [], SE: [], SW: [] };
+  const local = { NE: [], NW: [], SE: [], SW: [] };
   return species.reduce((acc, { name, location, residents }) => {
     if (includeNames) {
       acc[location].push({
@@ -31,7 +31,7 @@ const animalMap = ({ includeNames, sex, sorted }) => {
       acc[location].push(name);
     }
     return acc;
-  }, lc);
+  }, local);
 };
 
 function getAnimalMap(
